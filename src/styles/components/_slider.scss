@@ -19,10 +19,8 @@
     &_track {
         width: unset;
         display: inline-flex;
+        justify-content: space-around;
         gap: 1rem;
         animation: slide 30s infinite linear;
-        + .slide_track {
-            margin-left: 1rem;
-        }
     }
 }
