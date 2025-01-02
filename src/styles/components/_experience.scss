@@ -1,0 +1,12 @@
+#experience{
+    p {
+        color: $secondary-text;
+    }
+    .card_body{
+        @include flex-center; 
+        justify-content: space-between;
+    }
+    img{
+        width: 130px;
+    }
+}

@@ -1,0 +1,11 @@
+#socials{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .socials_item{
+        @include flex-center;
+        min-width: 100px;
+        flex-grow: 1;
+    }
+}

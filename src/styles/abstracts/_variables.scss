@@ -1,0 +1,27 @@
+// Backgrounds
+
+$dark-background: radial-gradient(circle, rgba(57, 33, 55, 1) 25%, rgba(13, 7, 35, 1) 75%);
+$light-background: radial-gradient(circle, rgba(246, 240, 254, 1) 25%, rgba(228, 202, 249, 1) 75%);
+
+//text
+$dark-text: white;
+$light-text: black;
+$secondary-text: #898989;
+
+//colors
+$glass: rgba(255,255,255,0.2);
+$active: rgba(244, 255, 0, 0.2);
+
+//fonts
+$font-type: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+//icon
+$icon-size: 50px;
+
+//breakpoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);

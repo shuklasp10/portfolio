@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: $font-type;
+}
+
+.app {
+    min-width: 100vw;
+    min-height: 100vh;
+    background: $light-background;
+    color: $light-text;
+    padding: 1px;
+
+    @include respond-to(md) {
+        .col-span-3 {
+            grid-column: span 6;
+        }
+        .col-span-2 {
+            grid-column: span 4;
+        }
+        .col-span-1 {
+            grid-column: span 2;
+        }
+    }
+}
+
+.dark {
+    background: $dark-background;
+    color: $dark-text;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+

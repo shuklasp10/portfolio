@@ -1,0 +1,28 @@
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.slide {
+    &_wrapper{
+        overflow: hidden;
+        white-space: nowrap;
+        &:hover .slide_track{
+            animation-play-state: paused;
+        }
+    }
+    
+    &_track {
+        width: unset;
+        display: inline-flex;
+        gap: 1rem;
+        animation: slide 30s infinite linear;
+        + .slide_track {
+            margin-left: 1rem;
+        }
+    }
+}

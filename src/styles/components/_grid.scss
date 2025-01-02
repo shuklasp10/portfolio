@@ -1,0 +1,11 @@
+.grid {
+    @include set_grid(repeat(6, 1fr), auto, 1rem);
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 2rem;
+
+    &_item {
+        padding: 30px;
+        width: unset;
+    }
+}

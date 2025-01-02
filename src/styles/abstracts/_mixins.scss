@@ -1,0 +1,18 @@
+@mixin set-grid($col, $row, $gap){
+    display: grid;
+    grid-template-columns: $col;
+    grid-template-rows: $row;
+    gap: $gap;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond-to($breakpoint){
+    @media screen and (max-width: map-get($breakpoints, $breakpoint)){
+        @content;
+    }
+}

@@ -1,0 +1,12 @@
+.nav {
+    margin: 4rem auto;
+    padding: 5px;
+    .card_header{
+        gap: 0;
+    }
+    &_items{
+        padding: 5px 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}

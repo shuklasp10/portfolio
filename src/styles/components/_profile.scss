@@ -1,0 +1,9 @@
+#profile {
+    .card_header{
+        &-icon{
+            border-radius: 50%;
+            color: black;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+        }
+    }
+}
