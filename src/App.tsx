@@ -9,46 +9,50 @@ import Socials from "./components/Socials";
 import Map from "./components/Map";
 import Experience from "./components/Experience";
 import Project from "./components/Project";
-import { userData } from "./Utils/Types";
+import { User } from "./Utils/Types";
 import { toTitleCase } from "./Utils/helper";
 
 function App() {
-  const [user,setUser] = useState(userData)
+  const [user, setUser] = useState<User | null>(null)
   const [theme,] = useContext(ThemeContext);
 
-  
-  useEffect(()=>{
+  useEffect(() => {
     fetch('https://portfolio-shuklasp-backend.vercel.app/client')
-    .then((res)=>res.json())
-    .then((data)=>setUser(data))
-    .catch((e)=>{
-      console.log(e)
-    })
-  },[])
-  
-  useEffect(()=>{
-    document.title = 'Portfolio: ' + toTitleCase(user.name)
-    const favicon = document.getElementById('favicon') as HTMLLinkElement;
-    if(favicon){
-      favicon.href = user.photo
+      .then((res) => res.json())
+      .then((data: User) => setUser(data))
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      document.title = 'Portfolio: ' + toTitleCase(user.name)
+      const favicon = document.getElementById('favicon') as HTMLLinkElement;
+      if (favicon) {
+        favicon.href = user.photo
+      }
     }
-  },[])
+  }, [])
 
   return (
     <div className={`app ${theme}`}>
       <Nav />
-      <main className="grid">
-        <Profile user={user}/>
-        <Carousel user={user}/>
-        <Resume user={user}/>
-        <Theme />
-        <Socials user={user} />
-        <Map user={user} />
-        <Experience user={user} />
-        {user.projects.map((project)=>(
-          <Project project={project} />
-        ))}
-      </main>
+      {user ?
+        <main className="grid">
+          <Profile user={user} />
+          <Carousel user={user} />
+          <Resume user={user} />
+          <Theme />
+          <Socials user={user} />
+          <Map user={user} />
+          <Experience user={user} />
+          {user.projects.map((project) => (
+            <Project project={project} />
+          ))}
+        </main>:
+        <div className="loader"></div>
+      }
     </div>
   )
 }
