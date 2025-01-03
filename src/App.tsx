@@ -24,7 +24,7 @@ function App() {
         console.log(e)
       })
   }, [])
-
+  
   useEffect(() => {
     if (user) {
       document.title = 'Portfolio: ' + toTitleCase(user.name)
@@ -48,7 +48,7 @@ function App() {
           <Map user={user} />
           <Experience user={user} />
           {user.projects.map((project) => (
-            <Project project={project} />
+            <Project project={project} key={project._id} />
           ))}
         </main>:
         <div className="loader"></div>

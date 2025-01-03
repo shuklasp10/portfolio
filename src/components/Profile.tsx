@@ -9,9 +9,9 @@ const Profile = ({user}:{user:User}) => {
         <img className="card_header-icon" src={user.photo} alt="Photo" />
         <h2 className="card_header-title">{`${toTitleCase(user.name)}`}</h2>
       </div>
-      <p className="card_body">
-        {user.headline.map((line)=><div>{line}</div>)}
-      </p>
+      <div className="card_body">
+        {user.headline.map((line,index)=><div key={index}>{line}</div>)}
+      </div>
     </section>
   )
 }

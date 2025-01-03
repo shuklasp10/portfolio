@@ -7,12 +7,12 @@ const Carousel = ({user}:{user:User}) => {
             <div className="slide_wrapper">
                 <div className="slide_track">
                     {user.skills.map((skill)=>(
-                        <img className='icon slide_item' src={skill.icon} alt={skill.name} title={skill.name} />
+                        <img className='icon slide_item' src={skill.icon} alt={skill.name} title={skill.name} key={skill._id}/>
                     ))}
                 </div>
                 <div className="slide_track">
                     {user.skills.map((skill)=>(
-                        <img className='icon slide_item' src={skill.icon} alt={skill.name} title={skill.name} />
+                        <img className='icon slide_item' src={skill.icon} alt={skill.name} title={skill.name} key={skill._id}/>
                     ))}
                 </div>
             </div>

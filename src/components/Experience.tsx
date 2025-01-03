@@ -7,7 +7,7 @@ const Experience = ({ user }: { user: User }) => {
             <h2>Experience</h2>
             <p>{`Total: ${user.experience.total} Years`}</p>
             {user.experience.companies.map((company) => (
-                <div className="card_body">
+                <div className="card_body" key={company._id}>
                     <div>
                         <h3>{toTitleCase(company.position)}</h3>
                         <p>{`${company.startMonth} ${company.startYear} - ${company.endMonth ? (company.endMonth + ' ' + company.endYear) : 'Present'}`}</p>
