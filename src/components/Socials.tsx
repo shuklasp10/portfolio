@@ -10,13 +10,13 @@ const Socials = ({user}:{user: User}) => {
 
     return (
         <section id="socials" className="col-span-1 row-span-3">
-            <a href={user.socials.giturl} className="card socials_item" target="_blank">
+            <a href={user.socials.giturl} className="card socials_item about" target="_blank">
                 <img className="icon" src={git} alt="github" />
             </a>
-            <a href={`mailto:${user.socials.mail}`} className="card socials_item">
+            <a href={`mailto:${user.socials.mail}`} className="card socials_item about">
                 <img className="icon" src={mail} alt="mail" />
             </a>
-            <a href={`tel:${user.socials.phone}`} className="card socials_item" target="_blank">
+            <a href={`tel:${user.socials.phone}`} className="card socials_item about" target="_blank">
                 <img className="icon" src={phone} alt="phone" />
             </a>
         </section>

@@ -22,10 +22,10 @@ const Nav = () => {
 
   return (
     <nav className="card nav">
-      <ul id="navbar" className="card_header" onClick={handleClick}>
-        <li className="card nav_items" title='all'>All</li>
-        <li className="nav_items" title="about">About</li>
-        <li className="nav_items" title="work">Work</li>
+      <ul id="navbar" className="card_header">
+        <li className="card nav_items" onClick={handleClick} title='all'>All</li>
+        <li className="nav_items" onClick={handleClick} title="about">About</li>
+        <li className="nav_items" onClick={handleClick} title="work">Work</li>
       </ul>
     </nav>
   )

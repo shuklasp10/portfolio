@@ -3,7 +3,7 @@ import { toTitleCase } from "../Utils/helper"
 
 const Project = ({project}:{project: ProjectType}) => {
   return (
-    <section id="project" className="card grid_item col-span-3 row-span-3">
+    <section id="project" className="card grid_item col-span-3 row-span-3 work">
             <a href={project.previewLink} target="_blank">
                 <img src={project.image} alt={project.name} title={project.name} />
             </a>
