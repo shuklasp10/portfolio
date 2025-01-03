@@ -13,18 +13,27 @@ import { User } from "./Utils/Types";
 import { toTitleCase } from "./Utils/helper";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem('user')
+    return storedUser ? JSON.parse(storedUser) : null
+  });
+
   const [theme,] = useContext(ThemeContext);
 
   useEffect(() => {
     fetch('https://portfolio-shuklasp-backend.vercel.app/client')
       .then((res) => res.json())
-      .then((data: User) => setUser(data))
+      .then((data: User) => {
+        if (data != user) {
+          setUser(data)
+          localStorage.setItem('user', JSON.stringify(data));
+        }
+      })
       .catch((e) => {
         console.log(e)
       })
   }, [])
-  
+
   useEffect(() => {
     if (user) {
       document.title = 'Portfolio: ' + toTitleCase(user.name)
@@ -50,7 +59,7 @@ function App() {
           {user.projects.map((project) => (
             <Project project={project} key={project._id} />
           ))}
-        </main>:
+        </main> :
         <div className="loader"></div>
       }
     </div>
