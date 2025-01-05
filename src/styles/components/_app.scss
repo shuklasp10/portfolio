@@ -1,0 +1,123 @@
+/* ================================= Nav =================================== */
+.nav {
+    margin: 4rem auto;
+    padding: 5px;
+    .card_header {
+        gap: 0;
+    }
+    &_items {
+        padding: 5px 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
+/* ================================= Profile =================================== */
+#profile {
+    .card_header {
+        &-icon {
+            border-radius: 50%;
+            color: black;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+/* ================================= Slider =================================== */
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.slide {
+    &_wrapper {
+        overflow: hidden;
+        white-space: nowrap;
+        &:hover .slide_track {
+            animation-play-state: paused;
+        }
+    }
+
+    &_track {
+        width: unset;
+        display: inline-flex;
+        justify-content: space-around;
+        gap: 1rem;
+        animation: slide 30s infinite linear;
+        padding: 0 0.5rem;
+    }
+}
+
+/* ================================= Resume =================================== */
+#resume {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    p {
+        color: $secondary-text;
+    }
+    .icon {
+        margin-right: 1rem;
+    }
+}
+
+/* ================================= Theme =================================== */
+#theme {
+    @include flex-center;
+    width: unset;
+    cursor: pointer;
+}
+
+/* ================================= Socials =================================== */
+#socials {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .socials_item {
+        @include flex-center;
+        min-width: 100px;
+        flex-grow: 1;
+    }
+}
+
+/* ================================= Map =================================== */
+#map {
+    img {
+        height: 100%;
+        width: 100%;
+        border-radius: inherit;
+        border: inherit;
+    }
+}
+
+/* ================================= Experience =================================== */
+#experience {
+    p {
+        color: $secondary-text;
+    }
+    .card_body {
+        @include flex-center;
+        justify-content: space-between;
+    }
+    img {
+        width: 130px;
+    }
+}
+
+/* ================================= Projects =================================== */
+#project {
+    text-align: center;
+    img {
+        width: 100%;
+        border-radius: 1rem;
+    }
+}
+
+/* ================================= Footer =================================== */
+footer{
+    margin: 2rem 0;
+}
