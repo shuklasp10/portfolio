@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { ThemeContext } from "./context/ThemeProvider"
 import Nav from "./components/Nav";
 import Profile from "./components/Profile";
@@ -9,30 +9,13 @@ import Socials from "./components/Socials";
 import Map from "./components/Map";
 import Experience from "./components/Experience";
 import Project from "./components/Project";
-import { User } from "./Utils/Types";
 import { toTitleCase } from "./Utils/helper";
+import { useUserQuery } from "./api/queries";
+
 
 function App() {
-  const [user, setUser] = useState<User | null>(() => {
-    const storedUser = localStorage.getItem('user')
-    return storedUser ? JSON.parse(storedUser) : null
-  });
-
+  const { data: user, isLoading, isError, error } = useUserQuery()
   const [theme,] = useContext(ThemeContext);
-
-  useEffect(() => {
-    fetch('https://portfolio-shuklasp-backend.vercel.app/client')
-      .then((res) => res.json())
-      .then((data: User) => {
-        if (data != user) {
-          setUser(data)
-          localStorage.setItem('user', JSON.stringify(data));
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  }, [])
 
   useEffect(() => {
     if (user) {
@@ -42,25 +25,27 @@ function App() {
         favicon.href = user.photo
       }
     }
-  }, [])
+  }, [user])
 
   return (
     <div className={`app ${theme}`}>
       <Nav />
-      {user ?
-        <main className="grid">
-          <Profile user={user} />
-          <Carousel user={user} />
-          <Resume user={user} />
-          <Theme />
-          <Socials user={user} />
-          <Map user={user} />
-          <Experience user={user} />
-          {user.projects.map((project) => (
-            <Project project={project} key={project._id} />
-          ))}
-        </main> :
-        <div className="loader"></div>
+      {isLoading ?
+        <div className="loader"></div> :
+        isError || !user ?
+          <center className="error">{`${error}. Please check your connection or try again.`}</center> :
+          <main className="grid">
+            <Profile user={user} />
+            <Carousel user={user} />
+            <Resume user={user} />
+            <Theme />
+            <Socials user={user} />
+            <Map user={user} />
+            <Experience user={user} />
+            {user.projects.map((project) => (
+              <Project project={project} key={project._id} />
+            ))}
+          </main>
       }
     </div>
   )
