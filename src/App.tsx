@@ -21,9 +21,7 @@ function App() {
     if (user) {
       document.title = 'Portfolio: ' + toTitleCase(user.name)
       const favicon = document.getElementById('favicon') as HTMLLinkElement;
-      if (favicon) {
-        favicon.href = user.photo
-      }
+      favicon.href = user.photo
     }
   }, [user])
 
