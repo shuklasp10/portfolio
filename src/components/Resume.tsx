@@ -1,8 +1,13 @@
-import { download, view } from "../assets/icons";
-import { toTitleCase } from "../Utils/helper";
-import { User } from "../Utils/Types";
+import React from "react";
+import { getMonthAndYear } from "../Utils/helper";
+import { Resume as ResumeType } from "../Utils/Types";
 
-const Resume = ({user}:{user:User}) => {
+interface PropType {
+  resume: ResumeType,
+  updatedAt: string,
+}
+
+const Resume: React.FC<PropType> = ({resume, updatedAt}) => {
   return (
     <section
       id="resume"
@@ -10,21 +15,21 @@ const Resume = ({user}:{user:User}) => {
     >
       <div>
         <h2>Resume</h2>
-        <p>{`${user.resume.updateMonth} ${user.resume.updateYear}`}</p>
+        <p>{getMonthAndYear(updatedAt)}</p>
       </div>
       <div>
         <a
-          href={user.resume.viewurl}
+          href={resume.file.url}
           target="_blank"
         >
-          <img className="icon" src={view} alt="view" title="View Resume" />
+          <img className="icon" src={resume.viewIcon.dark.url} alt="view" title="View Resume" />
         </a>
         <a
-          href={user.resume.file}
-          download={`Resume - ${toTitleCase(user.name)}`}
+          href={resume.file.url}
+          download={`Resume`}
           target="_blank"
         >
-          <img className="icon" src={download} alt="download" title="Download Resume" />
+          <img className="icon" src={resume.downloadIcon.dark.url} alt="download" title="Download Resume" />
         </a>
       </div>
     </section>

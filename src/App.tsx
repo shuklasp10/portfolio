@@ -9,41 +9,38 @@ import Socials from "./components/Socials";
 import Map from "./components/Map";
 import Experience from "./components/Experience";
 import Project from "./components/Project";
-import { toTitleCase } from "./Utils/helper";
-import { useUserQuery } from "./api/queries";
+import { useUserQuery } from "./services/getData";
 
 
 function App() {
-  const { data: user, isLoading, isError, error } = useUserQuery()
+  const { data, isLoading, isError, error } = useUserQuery()
   const [theme,] = useContext(ThemeContext);
 
   useEffect(() => {
-    if (user) {
-      document.title = 'Portfolio: ' + toTitleCase(user.name)
+    if (data) {
+      document.title = data.siteData.name;
       const favicon = document.getElementById('favicon') as HTMLLinkElement;
-      if (favicon) {
-        favicon.href = user.photo
-      }
+        favicon.href = data.siteData.favicon.url
     }
-  }, [user])
+  }, [data])
 
   return (
     <div className={`app ${theme}`}>
       <Nav />
       {isLoading ?
         <div className="loader"></div> :
-        isError || !user ?
+        isError || !data ?
           <center className="error">{`${error}. Please check your connection or try again.`}</center> :
           <main className="grid">
-            <Profile user={user} />
-            <Carousel user={user} />
-            <Resume user={user} />
-            <Theme />
-            <Socials user={user} />
-            <Map user={user} />
-            <Experience user={user} />
-            {user.projects.map((project) => (
-              <Project project={project} key={project._id} />
+            <Profile personal={data.personal} />
+            <Carousel skills={data.skills} />
+            <Resume resume={data.resume} updatedAt = {data.updatedAt} />
+            <Theme themeIcon={data.themeIcon}/>
+            <Socials socials={data.socials} />
+            <Map data={data} />
+            <Experience data={data} />
+            {data.projects.map((project) => (
+              <Project project={project} key={project.id} />
             ))}
           </main>
       }
