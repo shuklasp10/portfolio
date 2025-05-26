@@ -13,7 +13,7 @@ import { useUserQuery } from "./services/getData";
 
 
 function App() {
-  const { data, isLoading, isError, error } = useUserQuery()
+  const { data, isLoading, isError } = useUserQuery()
   const [theme,] = useContext(ThemeContext);
 
   useEffect(() => {
