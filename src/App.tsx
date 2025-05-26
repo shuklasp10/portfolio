@@ -30,7 +30,7 @@ function App() {
       {isLoading ?
         <div className="loader"></div> :
         isError || !data ?
-          <center className="error">{`${error}. Please check your connection or try again.`}</center> :
+          <center className="error">{'Error in fetching data.'}</center> :
           <main className="grid">
             <Profile personal={data.personal} />
             <Carousel skills={data.skills} />

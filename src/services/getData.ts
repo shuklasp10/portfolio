@@ -29,6 +29,9 @@ export const useUserQuery = () => {
         onSuccess(data) {
             sessionStorage.setItem('data', JSON.stringify(data))
         },
+        onError(err){
+            console.log(err);
+        },
         refetchOnWindowFocus: false,
         staleTime: Infinity,
         refetchOnReconnect: true
