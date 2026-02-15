@@ -20,7 +20,7 @@ jobs:
             -t portfolio-ui .
 
             docker stop portfolio-ui || true
-            docker run portfolio-ui || true
+            docker rm portfolio-ui || true
             docker run -d \
               --name portfolio-ui \
               -p 8080:80 \
